@@ -25,6 +25,12 @@ jobs:
         bundler-cache: true
         cache-version: 2
 
+    - name: Cache NPM validation dependencies
+      uses: actions/cache@v3
+      with:
+        path: node_modules
+        key: deps-npm-${{ hashfiles('package-lock.json') }}
+
     - name: Build & Validate
       run: rake validate
 
